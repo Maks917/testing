@@ -7,24 +7,18 @@ class TestTestaddgroup():
   def setup_method(self, method):
     self.wd = webdriver.Chrome()
     self.vars = {}
-  
+
   def teardown_method(self, method):
     self.wd.quit()
-  
+
   def test_testaddgroup(self):
-    self.open_home_page()
-    self.wd.set_window_size(974, 1040)
     self.login(username="admin", password="secret")
-    self.open_groups_page()
     self.create_group(Group(name="fdsfsa", header="fdsfas", footer="fasfs"))
     self.return_to_groups_page()
     self.logout()
 
   def test_testaddEmptygroup(self):
-    self.open_home_page()
-    self.wd.set_window_size(974, 1040)
     self.login(username="admin", password="secret")
-    self.open_groups_page()
     self.create_group(Group(name="", header="", footer=""))
     self.return_to_groups_page()
     self.logout()
@@ -36,6 +30,7 @@ class TestTestaddgroup():
     self.wd.find_element(By.LINK_TEXT, "group page").click()
 
   def create_group(self, group):
+    self.open_groups_page()
     # init grop creation
     self.wd.find_element(By.NAME, "new").click()
     # fill group firm
@@ -52,6 +47,8 @@ class TestTestaddgroup():
     self.wd.find_element(By.LINK_TEXT, "groups").click()
 
   def login(self, username, password):
+    self.open_home_page()
+    self.wd.set_window_size(974, 1040)
     self.wd.find_element(By.NAME, "user").send_keys(username)
     self.wd.find_element(By.NAME, "pass").click()
     self.wd.find_element(By.NAME, "pass").send_keys(password)
