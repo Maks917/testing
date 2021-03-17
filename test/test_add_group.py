@@ -13,13 +13,13 @@ def app(request):
 
 def test_testaddgroup(app):
     app.session.login(username="admin", password="secret")
-    app.create_group(Group(name="fdsfsa", header="fdsfas", footer="fasfs"))
-    app.return_to_groups_page()
+    app.group.create_group(Group(name="fdsfsa", header="fdsfas", footer="fasfs"))
+    app.group.return_to_groups_page()
     app.session.logout()
 
 
 def test_testaddEmptygroup(app):
     app.session.login(username="admin", password="secret")
-    app.create_group(Group(name="", header="", footer=""))
-    app.return_to_groups_page()
+    app.group.create_group(Group(name="", header="", footer=""))
+    app.group.return_to_groups_page()
     app.session.logout()
