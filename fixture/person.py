@@ -42,3 +42,12 @@ class PersonHelper:
     def open_add_page(self):
         wd = self.app.wd
         wd.find_element(By.LINK_TEXT, "add new").click()
+
+    def delete(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        # click checkbutton
+        wd.find_element(By.NAME, "selected[]").click()
+        # click delete button
+        wd.find_element(By.CSS_SELECTOR, "input[value='Delete']").click()
+        wd.switch_to_alert().accept()
